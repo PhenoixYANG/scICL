@@ -1,0 +1,47 @@
+{
+    "filter": true,
+    "n_rna": 2000,
+    "n_atac": 10000,
+    "dataset": "chen_2019",
+    "rna_dir" :"/remote-home/share/dmb_nas/liuwuchao/cell/data/Chen-2019-RNA.h5ad",
+    "atac_dir": "/remote-home/share/dmb_nas/liuwuchao/cell/data/Chen-2019-ATAC.h5ad",
+    "pretrainAE":
+    {
+        "epoches": 300,
+        "hidden1": 2048,
+        "hidden2": 1024,
+        "hidden3": 512,
+        "emb_size": 256,
+        "batch_size": 128,
+        "lr": 0.00001,
+        "num_workers": 16,
+        "model_dir": "check_point",
+        "dropout":0.1
+    },
+    "contrastive_learning":
+    {
+        "epoches": 800,
+        "hidden1": 2048,
+        "hidden2": 1024,
+        "hidden3": 512,
+        "emb_size": 256,
+        "batch_size": 128,
+        "lr": 0.00003,
+        "num_workers": 16,
+        "model_dir": "check_point",
+        "dropout":0.1,
+        "attention_dropout": 0.1,
+        "temperature": 1,
+        "n_head":4,
+        "n_sample": 3,
+        "mask_p":0.4,
+        "n_view":4,
+        "x1": 1,
+        "x2": 1,
+        "x3": 1,
+        "x4": 1
+    }
+    
+
+
+}

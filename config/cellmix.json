@@ -1,0 +1,48 @@
+{
+    "filter": false,
+    "n_rna": 10000,
+    "n_atac": 10000,
+    "dataset": "cellmix",
+    "rna_dir" :"/remote-home/share/dmb_nas/liuwuchao/cell/data/GSE126074_CellLineMixture_SNAREseq_cDNA_counts.tsv",
+    "atac_dir": "/remote-home/share/dmb_nas/liuwuchao/cell/data/scATAC_seq_SNARE.txt",
+    "label": "/remote-home/share/dmb_nas/liuwuchao/cell/data/cell_metadata.txt",
+    "pretrainAE":
+    {
+        "epoches": 200,
+        "hidden1": 500 ,
+        "hidden2": 256,
+        "hidden3": 64,
+        "emb_size": 16,
+        "batch_size": 128,
+        "lr": 0.00001,
+        "num_workers": 16,
+        "model_dir": "check_point",
+        "dropout":0.1
+    },
+    "contrastive_learning":
+    {
+        "epoches": 800,
+        "hidden1": 500,
+        "hidden2": 256,
+        "hidden3": 64,
+        "emb_size": 16,
+        "batch_size": 128,
+        "lr": 0.0001,
+        "num_workers": 16,
+        "model_dir": "check_point",
+        "dropout":0.1,
+        "attention_dropout": 0.1,
+        "temperature": 1,
+        "n_head":1,
+        "n_sample": 3,
+        "mask_p":0.4,
+        "n_view":8,
+        "x1": 1,
+        "x2": 1,
+        "x3": 1,
+        "x4": 1
+    }
+    
+
+
+}

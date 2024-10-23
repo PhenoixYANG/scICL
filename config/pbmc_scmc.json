@@ -1,0 +1,41 @@
+{
+    "filter": true,
+    "n_rna": 10000,
+    "n_atac": 10000,
+    "dataset": "pbmc_10k",
+    "rna_dir" :"/remote-home/share/dmb_nas/liuwuchao/cell/data/10x-Multiome-Pbmc10k-RNA.h5ad",
+    "atac_dir": "/remote-home/share/dmb_nas/liuwuchao/cell/data/10x-Multiome-Pbmc10k-ATAC.h5ad",
+    
+    "pretrainAE":
+    {
+        "epoches": 200,
+        "hidden1": 2048,
+        "hidden2": 1024,
+        "hidden3": 512,
+        "emb_size": 256,
+        "batch_size": 128,
+        "lr": 0.00001,
+        "num_workers": 16,
+        "model_dir": "check_point",
+        "dropout":0.1
+    },
+    "contrastive_learning":
+    {
+        "epoches": 200,
+        "hidden1": 2048,
+        "hidden2": 1024,
+        "hidden3": 512,
+        "emb_size": 256,
+        "batch_size": 128,
+        "lr": 0.00001,
+        "num_workers": 16,
+        "model_dir": "check_point",
+        "dropout":0.1,
+        "attention_dropout": 0.1,
+        "temperature": 1,
+        "n_sample": 3
+    }
+    
+
+
+}

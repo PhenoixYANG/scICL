@@ -1,0 +1,50 @@
+{
+    "filter": true,
+    "n_rna": 2000,
+    "n_atac": 10000,
+    "dataset": "ma_2020",
+    "rna_dir" :"/remote-home/share/dmb_nas/liuwuchao/cell/data/Ma-2020-RNA.h5ad",
+    "atac_dir": "/remote-home/share/dmb_nas/liuwuchao/cell/data/Ma-2020-ATAC.h5ad",
+    "pretrainAE":
+    {
+        "epoches": 500,
+        "hidden1": 5000,
+        "hidden2": 2000,
+        "hidden3": 512,
+        "emb_size": 256,
+        "batch_size": 128,
+        "lr": 0.00001,
+        "num_workers": 16,
+        "model_dir": "check_point",
+        "n_head":8,
+        "dropout":0.1,
+        "mask_p":0.4,
+        "n_view":15
+    },
+    "contrastive_learning":
+    {
+        "epoches": 1000,
+        "hidden1": 5000,
+        "hidden2": 2000,
+        "hidden3": 512,
+        "emb_size": 256,
+        "batch_size": 128,
+        "lr": 0.00001,
+        "num_workers": 16,
+        "model_dir": "check_point",
+        "attention_dropout": 0.1,
+        "temperature": 1,
+        "n_sample": 3,
+        "n_head":8,
+        "dropout":0.1,
+        "mask_p":0.4,
+        "n_view":8,
+        "x1": 1,
+        "x2": 1,
+        "x3": 1,
+        "x4": 1
+    }
+    
+
+
+}

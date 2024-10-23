@@ -1,0 +1,54 @@
+{
+    "filter": true,
+    "n_rna": 10000,
+    "n_atac": 10000,
+    "dataset": "pbmc_3k",
+    "data_dir": "/remote-home/share/dmb_nas/liuwuchao/cell/data/10XMultiomics_pbmc_3k_granulocyte_plus.h5",
+    "checkpoint_dir":"/remote-home/share/dmb_nas/liuwuchao/cell/train/checkpoint/pbmc_10k.pth",
+    "pretrainAE":
+    {
+        "epoches": 200,
+        "hidden1": 5000,
+        "hidden2": 2000,
+        "hidden3": 1000,
+        "emb_size": 256,
+        "batch_size": 128,
+        "lr": 0.00001,
+        "num_workers": 16,
+        "model_dir": "check_point",
+        "dropout":0.1
+    },
+    "contrastive_learning":
+    {
+        "epoches": 500,
+        "hidden1": 5000,
+        "hidden2": 2000,
+        "hidden3": 1000,
+        "emb_size": 256,
+        "batch_size": 128,
+        "lr": 0.00001,
+        "num_workers": 16,
+        "model_dir": "check_point",
+        "dropout":0.1,
+        "attention_dropout": 0.1,
+        "temperature": 1,
+        "n_sample": 8,
+        "n_head":4,
+        "mask_p":0.4,
+        "n_view":4,
+        "x1": 1,
+        "x2": 1,
+        "x3": 1,
+        "x4": 1
+    },
+    "temp":
+    {
+        "hidden1": 2048,
+        "hidden2": 1024,
+        "hidden3": 512,
+        "emb_size": 256
+    }
+    
+
+
+}
