@@ -1,4 +1,4 @@
-#scICL: Integrating Single-cell Multi-omics by Intra- and Inter-omics Contrastive Learning for Clustering Analysis
+# scICL: Integrating Single-cell Multi-omics by Intra- and Inter-omics Contrastive Learning for Clustering Analysis
 Code for our proposed scICL, which is a deep single-cell multi-omics data integration framework utilizing intra- and inter-omics contrastive learning for cell clustering analysis.
 ![scICL](/figs/scICL.png)
 
