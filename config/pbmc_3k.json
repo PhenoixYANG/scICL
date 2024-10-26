@@ -3,8 +3,8 @@
     "n_rna": 10000,
     "n_atac": 10000,
     "dataset": "pbmc_3k",
-    "data_dir": "/remote-home/share/dmb_nas/liuwuchao/cell/data/10XMultiomics_pbmc_3k_granulocyte_plus.h5",
-    "checkpoint_dir":"/remote-home/share/dmb_nas/liuwuchao/cell/train/checkpoint/pbmc_10k.pth",
+    "data_dir": "yourpath/10XMultiomics_pbmc_3k_granulocyte_plus.h5",
+    "checkpoint_dir":"yourpath/checkpoint/pbmc_10k.pth",
     "pretrainAE":
     {
         "epoches": 200,
@@ -21,7 +21,7 @@
     "contrastive_learning":
     {
         "epoches": 500,
-        "hidden1": 5000,
+        "hidden1": 2000,
         "hidden2": 2000,
         "hidden3": 1000,
         "emb_size": 256,

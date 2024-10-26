@@ -3,8 +3,8 @@
     "n_rna": 2000,
     "n_atac": 10000,
     "dataset": "ma_2020",
-    "rna_dir" :"/remote-home/share/dmb_nas/liuwuchao/cell/data/Ma-2020-RNA.h5ad",
-    "atac_dir": "/remote-home/share/dmb_nas/liuwuchao/cell/data/Ma-2020-ATAC.h5ad",
+    "rna_dir" :"yourpath/Ma-2020-RNA.h5ad",
+    "atac_dir": "yourpath/Ma-2020-ATAC.h5ad",
     "pretrainAE":
     {
         "epoches": 500,

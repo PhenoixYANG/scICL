@@ -3,9 +3,9 @@
     "n_rna": 10000,
     "n_atac": 10000,
     "dataset": "cellmix",
-    "rna_dir" :"/remote-home/share/dmb_nas/liuwuchao/cell/data/GSE126074_CellLineMixture_SNAREseq_cDNA_counts.tsv",
-    "atac_dir": "/remote-home/share/dmb_nas/liuwuchao/cell/data/scATAC_seq_SNARE.txt",
-    "label": "/remote-home/share/dmb_nas/liuwuchao/cell/data/cell_metadata.txt",
+    "rna_dir" :"yourpath/GSE126074_CellLineMixture_SNAREseq_cDNA_counts.tsv",
+    "atac_dir": "yourpath/scATAC_seq_SNARE.txt",
+    "label": "yourpath/cell_metadata.txt",
     "pretrainAE":
     {
         "epoches": 200,
