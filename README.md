@@ -15,6 +15,7 @@ To reproduce experimental results of scICL on PBMC-10K dataset, you can run
 `python test_with_checkpoint.py -d '0' --config 'pbmc_10k' --checkpoint path_to_checkpoint`
 
 The PBMC-10k-dataset can be download  from [here](https://scglue.readthedocs.io/zh-cn/latest/data.html). Please replace the data path in 'config/pbmc_10k.json'  with the path of the dataset you downloaded
+
 The pretrained checkpoint can be download from [here](https://pan.quark.cn/s/52bfb960f8fe)
 
 To train a scICL model, you can run
