@@ -3,8 +3,8 @@
     "n_rna": 10000,
     "n_atac": 10000,
     "dataset": "pbmc_10k",
-    "rna_dir" :"yourpath/10x-Multiome-Pbmc10k-RNA.h5ad",
-    "atac_dir": "yourpath/10x-Multiome-Pbmc10k-ATAC.h5ad",
+    "rna_dir" :"/remote-home/share/dmb_nas/liuwuchao/cell/data/10x-Multiome-Pbmc10k-RNA.h5ad",
+    "atac_dir": "/remote-home/share/dmb_nas/liuwuchao/cell/data/10x-Multiome-Pbmc10k-ATAC.h5ad",
     "checkpoint_dir":"yourpath/checkpoint/pbmc_10k.pth",
     "pretrainAE":
     {

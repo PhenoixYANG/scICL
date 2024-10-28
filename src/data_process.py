@@ -150,82 +150,16 @@ def normalize_atac(adata, filter_min_counts=True, size_factors=True, normalize_i
 
 
 
-# def process_data(rna,atac,config):
-#     if not os.path.exists(os.path.join('data',f"rna-{config['dataset']}.h5ad")) and not os.path.exists(os.path.join('data',f"rna-{config['dataset']}.h5ad")):
-#         sc.pp.filter_genes(rna, min_counts=1)
-#         sc.pp.filter_cells(rna, min_counts=1)
-#         sc.pp.filter_genes(atac, min_counts=1)
-#         sc.pp.filter_cells(atac, min_counts=1)
-#         sc.pp.highly_variable_genes(rna, n_top_genes=5000, flavor="seurat_v3")
-#         rna = rna[:, rna.var['highly_variable']]
-#         sc.tl.pca(rna, n_comps=config['n_rna'], svd_solver="auto")
-#         scglue.data.lsi(atac, n_components=config['n_atac'], n_iter=15)
-#         atac_valid_cells = set(atac.obs_names)
-#         rna_valid_cells = set(rna.obs_names)
-#         common_cells = atac_valid_cells & rna_valid_cells
-#         common_cells=list(common_cells)
-#         atac = atac[common_cells, :]
-#         rna = rna[common_cells, :]
-#         cell_type=rna.obs['cell_type'].tolist()
-#         classes, nlabel=np.unique(cell_type, return_inverse=True)
-#         rna.write(os.path.join('data',f"rna-{config['dataset']}.h5ad"), compression="gzip")
-#         atac.write(os.path.join('data',f"atac-{config['dataset']}.h5ad"), compression="gzip")
-#     else:
-#         rna = ad.read_h5ad(os.path.join('data',f"rna-{config['dataset']}.h5ad"))
-#         atac = ad.read_h5ad(os.path.join('data',f"atac-{config['dataset']}.h5ad"))
-#     return rna.obsm['X_pca'],atac.obsm['X_lsi'],classes,nlabel
-
-
-
-
-# def process_data(rna,atac,config):
-#     sc.pp.filter_genes(rna, min_counts=10)
-#     sc.pp.filter_cells(rna, min_counts=10)
-#     sc.pp.filter_genes(atac, min_counts=100)
-#     sc.pp.filter_cells(atac, min_counts=10)
-#     rna = rna[:, rna.var['highly_variable']]
-#     sc.pp.normalize_total(rna, target_sum=5e3)  
-#     sc.pp.log1p(rna)  
-#     sc.pp.highly_variable_genes(atac, n=config['n_atac'], flavor='seurat_v3')
-#     atac = atac[:, adata.var['highly_variable']]
-#     sc.pp.normalize_total(rna, target_sum=1e4)  
-#     sc.pp.log1p(rna)
-#     adata.obs['size_factors'] = np.log(np.clip(np.sum(adata.X, axis=1), 1, None)+eps)
-#     atac_valid_cells = set(atac.obs_names)
-#     rna_valid_cells = set(rna.obs_names)
-#     common_cells = atac_valid_cells & rna_valid_cells
-#     common_cells=list(common_cells)
-#     nlabel=[]
-#     atac = atac[common_cells, :]
-#     rna = rna[common_cells, :]
-#     rna_raw,classes,label=extract_data(rna)
-#     atac_raw,classes,label=extract_data(atac)
-#     return rna,atac,classes,label
-
-
 def process_data(rna,atac,config):
-    # rna_raw,classes,label=extract_data(rna)
-    # atac_raw,classes,label=extract_data(atac)
-    # x1=rna.X
-    # x2=atac.X
+
     if config['filter']:
         print('Filting data----------------------')
         sc.pp.highly_variable_genes(rna, n_top_genes=config['n_rna'], flavor='seurat_v3')
         rna = rna[:, rna.var['highly_variable']]
-        # sc.pp.highly_variable_genes(atac, n_top_genes=config['n_atac'], flavor='seurat_v3')
-        # atac = atac[:, atac.var['highly_variable']]
-        min_cells=int(x2.shape[0] * 0.05)
-        sc.pp.filter_genes(x2, min_cells=min_cells)
-    #     print('Filting data----------------------')
-    #     importantGenes=geneSelection(x1, n=config['n_rna'], plot=False)
-    #     x1 = x1[:, importantGenes]
-    #     importantGenes = geneSelection(x2, n=config['n_atac'], plot=False)
-    #     x2 = x2[:, importantGenes]
-    # rna = sc.AnnData(x1)
-    # atac = sc.AnnData(x2)
+        sc.pp.highly_variable_genes(atac, n_top_genes=config['n_atac'], flavor='seurat_v3')
+        atac = atac[:, atac.var['highly_variable']]
     rna=normalize(rna, size_factors=True, normalize_input=True, logtrans_input=True)
     atac=normalize(atac, size_factors=True, normalize_input=True, logtrans_input=True)
-    # atac=normalize_atac(atac)
     atac_valid_cells = set(atac.obs_names)
     rna_valid_cells = set(rna.obs_names)
     common_cells = atac_valid_cells & rna_valid_cells
@@ -235,9 +169,6 @@ def process_data(rna,atac,config):
     rna = rna[common_cells, :]
     rna_raw,classes,label=extract_data(rna)
     atac_raw,classes,label=extract_data(atac)
-    # for i in common_cells:
-    #     i=int(i)
-    #     nlabel.append(label[i])
     return rna,atac,classes,label
 
 
@@ -268,14 +199,9 @@ class scdata(Dataset):
         self.label=torch.tensor(label)
         self.classes=classes
         print(self.rna_x.shape)
-        # print(self.rna_s.shape)
-        # print(self.rna_raw.shape)
         print(self.atac_x.shape)
         print(self.label.shape)
-        # print(self.atac_s.shape)
-        # print(self.atac_raw.shape)
-        # print(self.label.shape)
-        # exit()
+
     
 
     def __len__(self):
@@ -295,12 +221,8 @@ def get_data(rna,atac,config):
     rna_x,atac_x,classes,label=process_data(rna,atac,config)
     print('Generating dataset----------------------')
     train_data=scdata(rna_x,atac_x,label,classes)
-    test_data=scdata(rna_x,atac_x,label,classes)
-    # rna_train,rna_test,atac_train,atac_test,y_train,y_test=split_data(rna_x,atac_x,label)
-    # train_data=scdata(rna_train,atac_train,y_train)
-    # test_data=scdata(rna_test,atac_test,y_test)
-    # exit()
-    return train_data,test_data
+    test_data=train_data
+    return train_data
 
 def load_cellmix_dataset(rna,atac,label,config):
     x1  = sc.read(rna).transpose().X
@@ -319,8 +241,7 @@ def load_cellmix_dataset(rna,atac,label,config):
     atac=normalize(atac, size_factors=True, normalize_input=True, logtrans_input=True)
     train_data=scdata(rna,atac,label,classes)
     test_data=train_data
-    # train_data=scdata(rna,atac,label,classes)
-    return train_data,test_data
+    return train_data
 
 
 def load_pbmc3k_dataset(data,config):
@@ -341,28 +262,8 @@ def load_pbmc3k_dataset(data,config):
     atac=normalize(atac, size_factors=True, normalize_input=True, logtrans_input=True)
     train_data=scdata(rna,atac,y,classes)
     test_data=train_data
-    # train_data=scdata(rna,atac,label,classes)
-    return train_data,test_data
+    return train_data
 
-# def load_pbmc_3k_dataset(rna,atac,label,config):
-#     x1  =sc.read(rna).transpose().X
-#     x2=sc.read(atac).transpose().X
-#     info=pd.read_table(label, header=0, index_col=0 )
-#     classes, label=np.unique(info['cell_line'].values, return_inverse=True)
-#     if config['filter']:
-#         print('Filting data----------------------')
-#         importantGenes=geneSelection(x1, n=config['n_rna'], plot=False)
-#         x1 = x1[:, importantGenes]
-#         importantGenes = geneSelection(x2, n=config['n_atac'], plot=False)
-#         x2 = x2[:, importantGenes]
-#     rna = sc.AnnData(x1)
-#     atac = sc.AnnData(x2)
-#     rna=normalize(rna, size_factors=True, normalize_input=True, logtrans_input=True)
-#     atac=normalize(atac, size_factors=True, normalize_input=True, logtrans_input=True)
-#     train_data=scdata(rna,atac,label,classes)
-#     test_data=train_data
-#     # train_data=scdata(rna,atac,label,classes)
-#     return train_data,test_data
 
 def load_pbmc_dataset(dataset,rna_dir,atac_dir,config):
     print('Loading data----------------------')

@@ -26,17 +26,16 @@ def main():
     torch.manual_seed(seed)  # CPU 相关操作设置随机种子
     torch.cuda.manual_seed(seed)  # GPU 相关操作设置随机种子
     np.random.seed(seed)
-    config_dir=f'/remote-home/share/dmb_nas/liuwuchao/cell/train/config/{args.config}.json'
+    config_dir=args.config
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model_config=get_config(config_dir)
     model_checkpoint=args.checkpoint
-    # torch.autograd.set_detect_anomaly(True)
     if model_config['dataset']=='pbmc_10k' or model_config['dataset']=='ma_2020' or model_config['dataset']=='chen_2019':
-        train_data,test_data=load_pbmc_dataset(model_config["dataset"],model_config["rna_dir"],model_config["atac_dir"],model_config)
+        train_data=load_pbmc_dataset(model_config["dataset"],model_config["rna_dir"],model_config["atac_dir"],model_config)
     elif model_config['dataset']=='cellmix':
-        train_data,test_data=load_cellmix_dataset(model_config["rna_dir"],model_config["atac_dir"],model_config["label"],model_config)
+        train_data=load_cellmix_dataset(model_config["rna_dir"],model_config["atac_dir"],model_config["label"],model_config)
     elif model_config['dataset']=='pbmc_3k':
-        train_data,test_data=load_pbmc3k_dataset(model_config["data_dir"],model_config)
+        train_data=load_pbmc3k_dataset(model_config["data_dir"],model_config)
     c_config=model_config['contrastive_learning']
     log_dir = generate_log(os.path.join('logs','test',model_config['dataset']))
     c_config['log_dir']=log_dir
@@ -48,7 +47,28 @@ def main():
     CL=torch.load(model_checkpoint)
     CL.config=c_config
     CL=CL.to(device)
-    ari,nmi,umap,emb=contrastive_test(CL,device,train_loader,c_config['epoches'])
+    ari_all=0
+    nmi_all=0
+    ari_max=0
+    nmi_max=0
+    ari_min=1
+    nmi_min=1
+    for i in range(5):
+        ari,nmi,umap,emb=contrastive_test(CL,device,train_loader,c_config['epoches'])
+        ari_all+=ari
+        nmi_all+=nmi
+        ari_max=max(ari_max,ari)
+        nmi_max=max(nmi_max,nmi)
+        ari_min=min(ari_min,ari)
+        nmi_min=min(nmi_min,nmi)
+    ari_all=ari_all/5
+    nmi_all=nmi_all/5
+    print(f'ari_all:{ari_all}')
+    print(f'nmi_all:{nmi_all}')
+    print(f'ari_max:{ari_max}')
+    print(f'nmi_max:{nmi_max}')
+    print(f'ari_min:{ari_min}')
+    print(f'nmi_min:{nmi_min}')
     np.save(os.path.join(log_dir,'umap.npy'), umap)
     np.save(os.path.join(log_dir,'emb.npy'), emb)
         

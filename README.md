@@ -11,8 +11,9 @@ To install the necessary packages, use conda and the provided environment.yaml f
 ## Running
 
 To reproduce experimental results of scICL on PBMC-10K dataset, you can run 
-
-`python test_with_checkpoint.py -d '0' --config 'pbmc_10k' --checkpoint path_to_checkpoint`
+`mkdir log`
+`mkdir log/test`
+`python test_with_checkpoint.py -d '0' --config 'your_path/config/pbmc_10k.json' --checkpoint path_to_checkpoint`
 
 The PBMC-10k-dataset can be download  from [here](https://scglue.readthedocs.io/zh-cn/latest/data.html). Please replace the data path in 'config/pbmc_10k.json'  with the path of the dataset you downloaded
 
@@ -20,6 +21,6 @@ The pretrained checkpoint can be download from [here](https://pan.quark.cn/s/52b
 
 To train a scICL model, you can run
 
-'python main.py -d '0' --config config_name --module 'pretrain''
-'python main.py -d '0' --config config_name --module 'contrastive_learning '
+'python main.py -d '0' --config your_path_forconfig --module 'pretrain''
+'python main.py -d '0' --config your_path_forconfig  --module 'contrastive_learning '
 

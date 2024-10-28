@@ -28,20 +28,17 @@ def main():
     config_dir=f'/remote-home/share/dmb_nas/liuwuchao/cell/train/config/{args.config}.json'
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model_config=get_config(config_dir)
-    # torch.autograd.set_detect_anomaly(True)
     if model_config['dataset']=='pbmc_10k' or model_config['dataset']=='ma_2020' or model_config['dataset']=='chen_2019':
-        train_data,test_data=load_pbmc_dataset(model_config["dataset"],model_config["rna_dir"],model_config["atac_dir"],model_config)
+        train_data=load_pbmc_dataset(model_config["dataset"],model_config["rna_dir"],model_config["atac_dir"],model_config)
     elif model_config['dataset']=='cellmix':
-        train_data,test_data=load_cellmix_dataset(model_config["rna_dir"],model_config["atac_dir"],model_config["label"],model_config)
+        train_data=load_cellmix_dataset(model_config["rna_dir"],model_config["atac_dir"],model_config["label"],model_config)
     elif model_config['dataset']=='pbmc_3k':
-        train_data,test_data=load_pbmc3k_dataset(model_config["data_dir"],model_config)
+        train_data=load_pbmc3k_dataset(model_config["data_dir"],model_config)
     if args.module=='pretrain':
-        # '''
         p_config=model_config['pretrainAE']
         log_dir = generate_log(os.path.join('logs','pretrain_AE',model_config['dataset']))
         p_config['log_dir']=log_dir
         train_loader=DataLoader(train_data,batch_size=p_config['batch_size'],shuffle=False,num_workers=p_config['num_workers'])
-        test_loader=DataLoader(test_data,batch_size=p_config['batch_size'],shuffle=False,num_workers=p_config['num_workers'])
         N1,N2=train_data.get_dim()
         p_config['n_clusters']=train_data.get_n_clusters()
         rnaAE=pretrain_ZINB_AE(p_config,N1).to(device)
