@@ -11,8 +11,11 @@ To install the necessary packages, use conda and the provided environment.yaml f
 ## Running
 
 To reproduce experimental results of scICL on PBMC-10K dataset, you can run 
+
 `mkdir log`
+
 `mkdir log/test`
+
 `python test_with_checkpoint.py -d '0' --config 'your_path/config/pbmc_10k.json' --checkpoint path_to_checkpoint`
 
 The PBMC-10k-dataset can be downloaded  from [here](https://scglue.readthedocs.io/zh-cn/latest/data.html). Please replace the data path in 'config/pbmc_10k.json'  with the path of the dataset you downloaded
