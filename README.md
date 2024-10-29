@@ -15,12 +15,17 @@ To reproduce experimental results of scICL on PBMC-10K dataset, you can run
 `mkdir log/test`
 `python test_with_checkpoint.py -d '0' --config 'your_path/config/pbmc_10k.json' --checkpoint path_to_checkpoint`
 
-The PBMC-10k-dataset can be download  from [here](https://scglue.readthedocs.io/zh-cn/latest/data.html). Please replace the data path in 'config/pbmc_10k.json'  with the path of the dataset you downloaded
+The PBMC-10k-dataset can be downloaded  from [here](https://scglue.readthedocs.io/zh-cn/latest/data.html). Please replace the data path in 'config/pbmc_10k.json'  with the path of the dataset you downloaded
 
-The pretrained checkpoint can be download from [here](https://pan.quark.cn/s/52bfb960f8fe)
+The pretrained checkpoint can be downloaded from [here](https://pan.quark.cn/s/52bfb960f8fe)
 
 To train a scICL model, you can run
 
 'python main.py -d '0' --config your_path_forconfig --module 'pretrain''
 'python main.py -d '0' --config your_path_forconfig  --module 'contrastive_learning '
 
+The PBMC-3K dataset can be downloaded from [here](https://github.com/xianglin226/scMDC/tree/master/datasets).
+
+The Ma-2020 dataset can be downloaded from [here](https://scglue.readthedocs.io/zh-cn/latest/data.html).
+
+The CellMix dataset can be downloaded from [here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126074).
