@@ -28,4 +28,4 @@ The PBMC-3K dataset can be downloaded from [here](https://github.com/xianglin226
 
 The Ma-2020 dataset can be downloaded from [here](https://scglue.readthedocs.io/zh-cn/latest/data.html).
 
-The CellMix dataset can be downloaded from [here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126074).
+The scRNA-seq and scATAC-seq count matrices of CellMix dataset can be downloaded from [here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126074). And the cell type infomation can be found at `data/cellmix_cell_metadata.txt`.
