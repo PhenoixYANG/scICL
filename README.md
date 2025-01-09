@@ -32,3 +32,23 @@ The PBMC-3K dataset can be downloaded from [here](https://github.com/xianglin226
 The Ma-2020 dataset can be downloaded from [here](https://scglue.readthedocs.io/zh-cn/latest/data.html).
 
 The scRNA-seq and scATAC-seq count matrices of CellMix dataset can be downloaded from [here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126074). And the cell type infomation can be found at `data/cellmix_cell_metadata.txt`.
+
+## Baselines
+
+The implementation of baseline methods in our paper can be found as follow:
+
+**scVI** [https://docs.scvi-tools.org/en/stable/tutorials/notebooks/scrna/harmonization.html](https://docs.scvi-tools.org/en/stable/tutorials/notebooks/scrna/harmonization.html)
+
+**scGPT** [https://github.com/bowang-lab/scGPT](https://github.com/bowang-lab/scGPT)
+
+**PeakVI** [https://docs.scvi-tools.org/en/stable/tutorials/notebooks/atac/PeakVI.html](https://docs.scvi-tools.org/en/stable/tutorials/notebooks/atac/PeakVI.html)
+
+**scMVAE** [https://github.com/cmzuo11/scMVAE](https://github.com/cmzuo11/scMVAE)
+
+**VIMCCA** [https://scbean.readthedocs.io/en/latest/tutorials/index.html#tutorials-for-scbean-vimcca](https://scbean.readthedocs.io/en/latest/tutorials/index.html#tutorials-for-scbean-vimcca)
+
+**SCMCs** [https://www.sdu-idea.cn/codes.php?name=scMCs](https://www.sdu-idea.cn/codes.php?name=scMCs)
+
+**DCCA** [https://github.com/cmzuo11/DCCA](https://github.com/cmzuo11/DCCA) 
+
+**scMCL** [https://github.com/yuxuanChen777/scMLC](https://github.com/yuxuanChen777/scMLC)
