@@ -1,4 +1,4 @@
-# scI<sup>2</sup>CL: Integrating Single-cell Multi-omics by Intra- and Inter-omics Contrastive Learning for Clustering Analysis
+# scI<sup>2</sup>CL: Effectively Integrating Single-cell Multi-omics by Intra- and Inter-omics Contrastive Learning for Accurate Clustering Analysis
 Code for our proposed scI<sup>2</sup>CL, which is a deep single-cell multi-omics data integration framework utilizing intra- and inter-omics contrastive learning for cell clustering analysis.
 ![scICL](/figs/scICL.png)
 
